@@ -1,0 +1,32 @@
+.itemcard{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    background-color: transparent;
+    border: 1px solid #0000004D;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.itemcard__tag{
+    position: absolute;
+    z-index: 2;
+    padding: 2px 12px;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    font-weight: 700;
+    line-height: 1.25;
+    top: 15px;
+}
+
+.itemcard__img {
+    position: relative;
+    width: 100%;
+    position: relative;
+}

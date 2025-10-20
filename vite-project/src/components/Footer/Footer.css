@@ -1,0 +1,12 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    max-height: 20px;
+    padding: 30px 50px;
+    font-weight: 500;
+}
+
+.footer p {
+    margin: 0;
+    padding: 0;
+}

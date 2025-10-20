@@ -1,0 +1,35 @@
+.weathercard {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    background-color: #00A3FF;
+    height: 80px;
+    margin: 30px 50px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.weathercard__temp{
+    color: #fff;
+    font-size: 2.25rem;
+    line-height: 1.1;
+    font-weight: 700;
+    padding: 15px;
+}
+
+.weathercard__sunicon{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 60px;
+    height: 60px;
+}
+
+.weathercard__cloudicon{
+    position: absolute;
+    right: 0;
+    top: 12px;
+}
+
+
