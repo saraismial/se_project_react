@@ -14,7 +14,7 @@ function ModalWithForm({ isOpen, onClose }) {
                     <img src={closeIcon} alt="Close" className="modal__close-btn-icon" />
                 </button>
 
-                <p className="modal__title">New garment</p>
+                <p className="modalwithform__title">New garment</p>
 
                 <form className="modal__form">
                     <div className="modal__fields">

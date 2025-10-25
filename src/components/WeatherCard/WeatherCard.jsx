@@ -1,13 +1,36 @@
-import sunIcon from "../../assets/sun.svg";
-import cloudIcon from "../../assets/cloud.svg";
+import { useContext } from "react";
+import WeatherIcons from "../WeatherIcons/WeatherIcons";
+import { weatherCardConfig } from "../../utils/weatherCardConfig";
 import './WeatherCard.css';
+import CurrentTempUnitContext from "../../contexts/CurrentTempUnitContext";
 
-function WeatherCard() {
+function WeatherCard({ weatherData }) {
+    //TODO- desctructure currenttempunit
+    const contextValue = useContext(CurrentTempUnitContext);
+
+    const timeOfDay = weatherData.timeOfDay;
+
+    const config = weatherCardConfig[weatherData.condition]?.[timeOfDay];
+
+    console.log('config:', config);
+
+    if (!config) {
+        console.log('config not found');
+        return null
+    };
+
     return(
-        <div className="weathercard">
-            <h2 className="weathercard__temp">75°F</h2>
-            <img className="weathercard__sunicon" src={sunIcon} alt="Sun Icon" />
-            <img className="weathercard__cloudicon" src={cloudIcon} alt="Cloud Icon" />
+        <div className="weathercard" style={{ background: config.background }}>
+            <h2 className="weathercard__temp">
+                {weatherData.temp[contextValue.currentTempUnit]}&deg; {contextValue.currentTempUnit}
+            </h2>
+            {config.icons.map((iconName, index) => (
+                <WeatherIcons 
+                    key={`${iconName}-${index}`}
+                    name={iconName}
+                    timeOfDay= {timeOfDay}
+                />
+            ))}
         </div>
     )
 }

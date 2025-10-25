@@ -33,9 +33,10 @@
     position: absolute;
     top: 20px;
     right: 20px;
+    cursor: pointer;
 }
 
-.modal__title {
+.modalwithform__title {
     margin: 0;
     padding: 30px 0 10px 20px;
 }
