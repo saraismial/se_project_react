@@ -5,19 +5,19 @@ import './WeatherCard.css';
 import CurrentTempUnitContext from "../../contexts/CurrentTempUnitContext";
 
 function WeatherCard({ weatherData }) {
-    //TODO- desctructure currenttempunit
     const contextValue = useContext(CurrentTempUnitContext);
 
-    const timeOfDay = weatherData.timeOfDay;
+    const timeOfDay = weatherData?.timeOfDay || "";
+    const condition = weatherData?.condition || "";
 
-    const config = weatherCardConfig[weatherData.condition]?.[timeOfDay];
+    if (!condition || !timeOfDay) return null;
 
-    console.log('config:', config);
+    const config =
+        weatherCardConfig?.[condition]?.[timeOfDay] ??
+        weatherCardConfig?.default?.[timeOfDay]
+    ;
 
-    if (!config) {
-        console.log('config not found');
-        return null
-    };
+    if (!config) return null;
 
     return(
         <div className="weathercard" style={{ background: config.background }}>

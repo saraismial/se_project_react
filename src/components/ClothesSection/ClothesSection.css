@@ -1,0 +1,29 @@
+.clothessection__row {
+    display: flex;
+    gap: 20px;
+}
+
+.clothessection__txt {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 24px;
+}
+
+.clothessection__btn {
+    background-color: transparent;
+    font-size: 1.25rem;
+    line-height: 24px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    color: #00000099;
+}
+
+.clothessection__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}

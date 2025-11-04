@@ -16,8 +16,6 @@ export const getWeatherData = async () => {
 
         const weatherData = await weatherDataFetch.json();
 
-        console.log(weatherData);
-
         return parseWeatherData(weatherData);
     }
     catch(error) {
@@ -56,8 +54,6 @@ function parseWeatherData(weatherData) {
 
     parsedData.condition = weatherConditions[apiCondition] || 'clear';
     parsedData.timeOfDay = weatherData.weather[0].icon.endsWith('d') ? 'day' : 'night';
-
-    console.log(parsedData);
 
     return parsedData;
 }
