@@ -57,3 +57,16 @@
     color: #000;
 }
 
+.header__auth-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.header__auth-btn:hover {
+    opacity: 0.7;
+}

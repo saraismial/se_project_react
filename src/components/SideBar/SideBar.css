@@ -1,6 +1,13 @@
 .sidebar {
     display: flex;
+    flex-direction: column;
     gap: 16px;
+}
+
+.sidebar__details {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 .sidebar__avatar {
@@ -13,4 +20,18 @@
     font-size: 1.25rem;
     font-weight: 700;
     line-height: 24px;
+}
+
+.sidebar__links {
+    flex-direction: column;
+}
+
+.sidebar__link {
+    background-color: transparent;
+    font-size: 1.25rem;
+    line-height: 24px;
+    border: none;
+    font-weight: 700;
+    padding: 0;
+    cursor: pointer;
 }

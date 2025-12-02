@@ -1,65 +1,85 @@
-const baseUrl = 'http://localhost:3001';
+// utils/api.js
+const baseUrl = "http://localhost:3001";
 
-const getItems = async () => {
-    try {
-        const res = await fetch(`${baseUrl}/items`, {
-            headers: {
-                    Accept: "application/json"
-                }
-        });
+const getItems = async (token) => {
+  try {
+    const headers = {
+      Accept: "application/json",
+    };
 
-        if(!res.ok) {
-            throw new Error(`Error fetching request! Status: ${res.status}`);
-        }
-
-        const data = await res.json();
-
-        return data;
-    }
-    catch(error) {
-        console.error('Error handling request:', error);
-        throw error;
+    if (token) {
+      headers.authorization = `Bearer ${token}`;
     }
 
-}
+    const res = await fetch(`${baseUrl}/items`, { headers });
 
-const addItems = async ({ name, imageUrl, weather }) => {
-    try {
-        const res = await fetch(`${baseUrl}/items`, {
-            method: "POST",
-            headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application/json"
-                },
-            body: JSON.stringify({
-                name,
-                imageUrl,
-                weather: String(weather).toLowerCase()
-            })
-        });
+    if (!res.ok) {
+      throw new Error(`Error fetching request! Status: ${res.status}`);
+    }
 
-        const data = await res.json();
-        return data;
-    }
-    catch(error) {
-        console.error('Error handling request:', error);
-        throw error;
-    }
-}
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Error handling request:", error);
+    throw error;
+  }
+};
 
-const deleteItems = async (_id) => {
-    try {
-        const res = await fetch(`${baseUrl}/items/${_id}`, {
-            method: "DELETE"
-        });
+const addItems = async ({ name, imageUrl, weather }, token) => {
+  try {
+    const headers = {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    };
 
-        const data = await res.json();
-        return data;
+    if (token) {
+      headers.authorization = `Bearer ${token}`;
     }
-    catch(error) {
-        console.error('Error handling request:', error);
-        throw error;
+
+    const res = await fetch(`${baseUrl}/items`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify({
+        name,
+        imageUrl,
+        weather: String(weather).toLowerCase(),
+      }),
+    });
+
+    if (!res.ok) {
+      throw new Error(`Error fetching request! Status: ${res.status}`);
     }
-}
+
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Error handling request:", error);
+    throw error;
+  }
+};
+
+const deleteItems = async (_id, token) => {
+  try {
+    const headers = {};
+    if (token) {
+      headers.authorization = `Bearer ${token}`;
+    }
+
+    const res = await fetch(`${baseUrl}/items/${_id}`, {
+      method: "DELETE",
+      headers,
+    });
+
+    if (!res.ok) {
+      throw new Error(`Error fetching request! Status: ${res.status}`);
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Error handling request:", error);
+    throw error;
+  }
+};
 
 export { getItems, addItems, deleteItems };

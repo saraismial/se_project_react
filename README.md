@@ -13,6 +13,12 @@ This project was developed focusing on applying React fundamentals, asynchronous
 
 ---
 
+## Project Repositories
+
+- **Backend:** https://github.com/saraismial/se_project_express
+
+---
+
 ## Features
 
 - **Live Weather Data**  
