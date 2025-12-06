@@ -1,4 +1,7 @@
-const BASE_URL = 'http://localhost:3001';
+const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://api.wtwr.spacegamers.net"
+    : "http://localhost:3001";
 
 const checkRes = (res) => {
     if (res.ok) {
