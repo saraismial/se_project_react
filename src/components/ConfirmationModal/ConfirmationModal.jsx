@@ -9,7 +9,10 @@ function ConfirmationModal({
   isLoading,
   error,
 }) {
-  const handleDelete = () => handleDeleteItem(card);
+  const handleDelete = (e) => {
+    e.preventDefault();
+    handleDeleteItem(card);
+  };
 
   const switchElement = (
     <button type="button" className="modal__cancel-btn" onClick={onClose}>
