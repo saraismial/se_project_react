@@ -3,6 +3,9 @@
 **WTWR** is a responsive weather-based wardrobe application built with React, the Context API, and the OpenWeather API.  
 The app fetches real-time weather data, determines the time of day, and dynamically updates the interface and clothing recommendations based on temperature and weather conditions.
 
+- **Project Pitch**
+  View the project pitch video here: https://drive.google.com/file/d/1v8bF4s4c3lOI1XExNDEvW4lfPWsw1j0h/view?usp=sharing
+
 ---
 
 ## Overview
