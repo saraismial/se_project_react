@@ -4,7 +4,7 @@ import closeIcon from "../../assets/closeicon.svg";
 
 import "./ItemModal.css";
 
-function ItemModal({ card, isOpen, onClose, handleDeleteItem }) {
+function ItemModal({ card, isOpen, onClose, openConfirmation }) {
   const currentUser = useContext(CurrentUserContext);
 
   if (!card) return null;
@@ -12,8 +12,6 @@ function ItemModal({ card, isOpen, onClose, handleDeleteItem }) {
   const ownerId = typeof card.owner === "string" ? card.owner : card.owner?._id;
 
   const isOwn = ownerId === currentUser?._id;
-
-  const handleDelete = () => handleDeleteItem(card);
 
   return (
     <div className={`modal ${isOpen ? "modal_is-opened" : ""}`}>
@@ -36,7 +34,7 @@ function ItemModal({ card, isOpen, onClose, handleDeleteItem }) {
           </div>
           {isOwn && (
             <div className="modal__delete">
-              <button className="modal__delete-btn" onClick={handleDelete}>
+              <button className="modal__delete-btn" onClick={openConfirmation}>
                 Delete item
               </button>
             </div>

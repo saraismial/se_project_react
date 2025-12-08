@@ -1,3 +1,4 @@
+/* global process */
 const BASE_URL =
   process.env.NODE_ENV === "production"
     ? "https://api.wtwr.spacegamers.net"
@@ -43,4 +44,15 @@ const getUserData = (token) => {
     }).then(checkRes);
 } 
 
-export { register, login, getUserData };
+const updateUser = ({ name, avatar }, token) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, avatar }),
+  }).then(checkRes);
+};
+
+export { register, login, getUserData, updateUser };

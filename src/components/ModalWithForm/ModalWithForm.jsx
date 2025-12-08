@@ -10,6 +10,8 @@ function ModalWithForm({
   onSubmit,
   children,
   secondaryAct,
+  buttonClassName,
+  footerClassName,
 }) {
   const handleOverlayMouseDown = (e) => {
     if (e.target.classList.contains("modal")) {
@@ -36,8 +38,11 @@ function ModalWithForm({
 
         <form className="modal__form" name={name} onSubmit={onSubmit}>
           <div className="modal__fields">{children}</div>
-          <div className="modal__footer">
-            <button type="submit" className="modal__submit-btn">
+          <div className={`modal__footer ${footerClassName || ""}`}>
+            <button
+              type="submit"
+              className={`modal__submit-btn ${buttonClassName || ""}`}
+            >
               {buttonText}
             </button>
             {secondaryAct}

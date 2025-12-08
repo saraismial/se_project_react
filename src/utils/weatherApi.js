@@ -65,6 +65,6 @@ export function getWeatherCondition(temperature) {
         return 'warm';
     } else {
         return 'cold';
-    };
+    }
 }
 

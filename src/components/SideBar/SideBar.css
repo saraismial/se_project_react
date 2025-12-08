@@ -23,13 +23,16 @@
 }
 
 .sidebar__links {
+    display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 
 .sidebar__link {
     background-color: transparent;
     font-size: 1.25rem;
     line-height: 24px;
+    text-align: left;
     border: none;
     font-weight: 700;
     padding: 0;

@@ -30,3 +30,15 @@
     width: 100%;
     position: relative;
 }
+
+.itemcard__like-icon {
+  width: 20px;
+  height: 17px;
+}
+
+.itemcard__like-btn {
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    bottom: 15px;
+}

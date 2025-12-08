@@ -5,7 +5,14 @@ import ClothesSection from "../ClothesSection/ClothesSection";
 
 import "./Profile.css";
 
-function Profile({ cards, onAddClothes, onCardClick, onSignOut }) {
+function Profile({
+  cards,
+  onAddClothes,
+  onCardClick,
+  onEditProfile,
+  onCardLike,
+  onLogout,
+}) {
   const currentUser = useContext(CurrentUserContext);
 
   // Only keep cards owned by the current user
@@ -19,11 +26,12 @@ function Profile({ cards, onAddClothes, onCardClick, onSignOut }) {
 
   return (
     <main className="profile">
-      <SideBar onSignOut={onSignOut} />
+      <SideBar onEditProfile={onEditProfile} onLogout={onLogout} />
       <ClothesSection
         cards={userCards}
         onCardClick={onCardClick}
         onAddClothes={onAddClothes}
+        onCardLike={onCardLike}
       />
     </main>
   );

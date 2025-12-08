@@ -1,4 +1,4 @@
-// utils/api.js
+/* global process */
 const baseUrl =
   process.env.NODE_ENV === "production"
     ? "https://api.wtwr.spacegamers.net"
@@ -85,4 +85,45 @@ const deleteItems = async (_id, token) => {
   }
 };
 
-export { getItems, addItems, deleteItems };
+const addCardLike = async (id, token) => {
+  const headers = {
+    Accept: "application/json",
+  };
+  if (token) {
+    headers.authorization = `Bearer ${token}`;
+  }
+
+  const res = await fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "PUT",
+    headers,
+  });
+
+  if (!res.ok) {
+    throw new Error(`Error liking item! Status: ${res.status}`);
+  }
+
+  return res.json();
+};
+
+const removeCardLike = async (id, token) => {
+  const headers = {
+    Accept: "application/json",
+  };
+  if (token) {
+    headers.authorization = `Bearer ${token}`;
+  }
+
+  const res = await fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE",
+    headers,
+  });
+
+  if (!res.ok) {
+    throw new Error(`Error removing like! Status: ${res.status}`);
+  }
+
+  return res.json();
+};
+
+
+export { getItems, addItems, deleteItems, addCardLike, removeCardLike };

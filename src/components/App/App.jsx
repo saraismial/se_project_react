@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { getItems, addItems, deleteItems } from "../../utils/api";
-import { register, login, getUserData } from "../../utils/auth";
+import {
+  getItems,
+  addItems,
+  deleteItems,
+  addCardLike,
+  removeCardLike,
+} from "../../utils/api";
+import { register, login, getUserData, updateUser } from "../../utils/auth";
 import { getWeatherData } from "../../utils/weatherApi";
 
 import CurrentTempUnitContext from "../../contexts/CurrentTempUnitContext";
@@ -15,17 +21,30 @@ import Main from "../Main/Main";
 import ItemModal from "../ItemModal/ItemModal";
 import Footer from "../Footer/Footer";
 import Profile from "../Profile/Profile";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
+import LogoutModal from "../LogoutModal/LogoutModal";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoadingUser, setIsLoadingUser] = useState(true);
 
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const [isAuthLoading, setIsAuthLoading] = useState(false);
   const [authError, setAuthError] = useState("");
+
+  const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
+  const [isProfileLoading, setIsProfileLoading] = useState(false);
+  const [profileError, setProfileError] = useState("");
+
+  const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
+  const [isDeleteLoading, setIsDeleteLoading] = useState(false);
+  const [deleteError, setDeleteError] = useState("");
+
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+  const [logoutError, setLogoutError] = useState("");
 
   const [cards, setCards] = useState([]);
 
@@ -58,8 +77,14 @@ function App() {
     setIsAddFormOpen(false);
     setIsLoginModalOpen(false);
     setIsRegisterModalOpen(false);
+    setIsEditProfileModalOpen(false);
+    setIsConfirmationModalOpen(false);
+    setIsLogoutModalOpen(false);
 
     setAuthError("");
+    setProfileError("");
+    setDeleteError("");
+    setLogoutError("");
   };
 
   const openLoginModal = () => {
@@ -70,6 +95,21 @@ function App() {
   const openRegisterModal = () => {
     setAuthError("");
     setIsRegisterModalOpen(true);
+  };
+
+  const openEditProfile = () => {
+    setProfileError("");
+    setIsEditProfileModalOpen(true);
+  };
+
+  const openConfirmation = () => {
+    setDeleteError("");
+    setIsConfirmationModalOpen(true);
+  };
+
+  const openLogoutModal = () => {
+    setLogoutError("");
+    setIsLogoutModalOpen(true);
   };
 
   const handleAddItemSubmit = (inputValues) => {
@@ -86,13 +126,44 @@ function App() {
 
   const handleDeleteItem = (card) => {
     const token = localStorage.getItem("jwt");
+    if (!token || !card?._id) return;
+
+    setIsDeleteLoading(true);
+    setDeleteError("");
 
     deleteItems(card._id, token)
       .then(() => {
         setCards((prev) => prev.filter((c) => c._id !== card._id));
-        handleCloseModal();
+        setSelectedCard(null);
+        setIsModalOpen(false);
+        setIsConfirmationModalOpen(false);
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.error("Delete error:", err.message);
+        setDeleteError("Failed to delete item. Please try again.");
+      })
+      .finally(() => {
+        setIsDeleteLoading(false);
+      });
+  };
+
+  const handleCardLike = ({ _id, likes }) => {
+    const token = localStorage.getItem("jwt");
+    if (!token || !currentUser) return;
+
+    const isLiked = likes.some((id) => id === currentUser._id);
+
+    const likeRequest = !isLiked
+      ? addCardLike(_id, token)
+      : removeCardLike(_id, token);
+
+    likeRequest
+      .then((updatedCard) => {
+        setCards((cards) =>
+          cards.map((item) => (item._id === _id ? updatedCard : item))
+        );
+      })
+      .catch((err) => console.error("Like error:", err.message));
   };
 
   useEffect(() => {
@@ -113,10 +184,7 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
-    if (!token) {
-      setIsLoadingUser(false);
-      return;
-    }
+    if (!token) return;
 
     getUserData(token)
       .then((user) => {
@@ -128,9 +196,6 @@ function App() {
         localStorage.removeItem("jwt");
         setIsLoggedIn(false);
         setCurrentUser(null);
-      })
-      .finally(() => {
-        setIsLoadingUser(false);
       });
   }, []);
 
@@ -181,6 +246,27 @@ function App() {
       });
   };
 
+  const handleUpdateUser = ({ name, avatar }) => {
+    const token = localStorage.getItem("jwt");
+    if (!token) return;
+
+    setIsProfileLoading(true);
+    setProfileError("");
+
+    updateUser({ name, avatar }, token)
+      .then((updatedUser) => {
+        setCurrentUser(updatedUser);
+        setIsEditProfileModalOpen(false);
+      })
+      .catch((err) => {
+        console.error("Update profile error:", err.message);
+        setProfileError(err.message);
+      })
+      .finally(() => {
+        setIsProfileLoading(false);
+      });
+  };
+
   const handleSignOut = () => {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
@@ -210,7 +296,6 @@ function App() {
             isLoggedIn={isLoggedIn}
             onLoginClick={openLoginModal}
             onRegisterClick={openRegisterModal}
-            onSignOut={handleSignOut}
           />
           <Routes>
             <Route
@@ -220,6 +305,7 @@ function App() {
                   cards={cards}
                   onCardClick={handleCardClick}
                   weatherData={weatherData}
+                  onCardLike={handleCardLike}
                 />
               }
             />
@@ -231,7 +317,9 @@ function App() {
                     cards={cards}
                     onCardClick={handleCardClick}
                     onAddClothes={openAddForm}
-                    onSignOut={handleSignOut}
+                    onEditProfile={openEditProfile}
+                    onCardLike={handleCardLike}
+                    onLogout={openLogoutModal}
                   />
                 ) : (
                   <Navigate to="/" replace />
@@ -243,7 +331,7 @@ function App() {
             card={selectedCard}
             isOpen={isModalOpen}
             onClose={handleCloseModal}
-            handleDeleteItem={handleDeleteItem}
+            openConfirmation={openConfirmation}
           />
           <Footer />
           <AddItemModal
@@ -272,6 +360,27 @@ function App() {
               setIsRegisterModalOpen(false);
               setIsLoginModalOpen(true);
             }}
+          />
+          <EditProfileModal
+            isOpen={isEditProfileModalOpen}
+            onClose={closeAllModals}
+            onUpdate={handleUpdateUser}
+            isLoading={isProfileLoading}
+            error={profileError}
+          />
+          <ConfirmationModal
+            card={selectedCard}
+            isOpen={isConfirmationModalOpen}
+            onClose={closeAllModals}
+            handleDeleteItem={handleDeleteItem}
+            isLoading={isDeleteLoading}
+            error={deleteError}
+          />
+          <LogoutModal
+            isOpen={isLogoutModalOpen}
+            onClose={closeAllModals}
+            onSignOut={handleSignOut}
+            error={logoutError}
           />
         </CurrentUserContext.Provider>
       </CurrentTempUnitContext.Provider>
