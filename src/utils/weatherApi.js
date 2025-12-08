@@ -1,5 +1,3 @@
-//API key: 23658b066f0a8e651f36b066369c53b4
-
 import { lat, lon, apiKey } from './constants'
 
 export const getWeatherData = async () => {
