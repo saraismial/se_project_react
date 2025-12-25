@@ -1,3 +1,7 @@
+.toggleswitch__container {
+    padding: 0 50px;
+}
+
 .toggleswitch {
     box-sizing: border-box;
     position: relative;
@@ -5,7 +9,6 @@
     height: 28px;
     border: 2px solid #7E7E7E;
     border-radius: 20px;
-    margin: auto;
     padding: 0 8px;
     display: flex;
     align-items: center;
@@ -66,6 +69,10 @@
 
 /* Mobile View */
 @media screen and (max-width: 767px) {
+    .toggleswitch__container {
+        padding: 0 25px;
+    }
+
     .toggleswitch {
         width: 39.2px;
         height: 19px;
@@ -94,4 +101,13 @@
         right: -1px;
     }
 }
+
+/* Tablet View */
+@media screen and (min-width: 768px) and (max-width: 1020px) {
+    .toggleswitch__container {
+        padding: 0 35px;
+    }
+}
+
+
 

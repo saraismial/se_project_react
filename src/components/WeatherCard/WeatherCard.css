@@ -4,7 +4,7 @@
     justify-content: flex-start;
     position: relative;
     height: 80px;
-    margin: 30px 50px;
+    margin: 25px 50px;
     border-radius: 12px;
     overflow: hidden;
 }
@@ -39,31 +39,26 @@
 
 /* Mobile View */
 @media screen and (max-width: 767px){
-
   .weathercard {
       height: 56px;
-      margin: 15px 25px;
+      margin: 10px 25px;
   }
 
   .weathercard__temp{
       font-size: 1.5rem;
       padding: 10px;
   }
-
 }
 
-/* Desktop View */
-
+/* Tablet View */
 @media screen and (min-width: 768px) and (max-width: 1020px){
-
   .weathercard {
       height: 72px;
-      margin: 20px 35px;
+      margin: 15px 35px;
   }
 
   .weathercard__temp{
       font-size: 2rem;
       padding: 13px;
   }
-
 }

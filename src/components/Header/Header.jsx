@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 
 import headerLogo from "../../assets/logo.svg";
-import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+// import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 import "./Header.css";
@@ -10,7 +10,7 @@ import "./Header.css";
 function Header({
   onAddClothes,
   weatherData,
-  onChange,
+  // onChange,
   isLoggedIn,
   onLoginClick,
   onRegisterClick,
@@ -35,7 +35,7 @@ function Header({
         <p className="header__dateplace">
           <time>{currentDate}</time>, {weatherData.city}
         </p>
-        <ToggleSwitch onChange={onChange} />
+        {/* <ToggleSwitch onChange={onChange} /> */}
       </div>
 
       <div className="header__right">

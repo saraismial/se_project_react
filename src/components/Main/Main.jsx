@@ -5,7 +5,9 @@ import ItemCard from "../ItemCard/ItemCard";
 import CurrentTempUnitContext from "../../contexts/CurrentTempUnitContext";
 import { getWeatherCondition } from "../../utils/weatherApi";
 
-function Main({ cards, onCardClick, weatherData, onCardLike }) {
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+
+function Main({ cards, onCardClick, weatherData, onCardLike, onChange }) {
   const contextValue = useContext(CurrentTempUnitContext);
 
   const weatherCondition = getWeatherCondition(weatherData.temp.F);
@@ -16,6 +18,8 @@ function Main({ cards, onCardClick, weatherData, onCardLike }) {
 
   return (
     <main className="main">
+      <ToggleSwitch onChange={onChange} />
+
       <WeatherCard weatherData={weatherData} />
 
       <div className="main__cards">
