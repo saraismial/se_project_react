@@ -128,3 +128,52 @@
 .modal__switch-btn:hover {
     color: #000;
 }
+
+/* Mobile View */
+@media screen and (max-width: 767px) {
+    .modal__close-btn {
+        top: 14px;
+        right: 14px;
+    }
+
+    .modalwithform__title {
+        font-size: 0.875rem;
+        padding: 21px 0 0 21px;
+    }
+
+    .modal__form {
+        padding: 21px;
+        row-gap: 28px;
+        font-size: 0.875rem;
+    }
+
+    .modal__fields {
+        gap: 21px;
+    }
+
+    .modal__footer {
+        gap: 5px;
+    }
+
+    .modal__label {
+        line-height: 1.1px;
+        gap: 7px;
+    }
+
+    .modal__input {
+        max-width: 309px;
+        line-height: 1.1px;
+    }
+
+    .modal__fieldset legend {
+        margin-bottom: 7px;
+    }
+
+    .modal__fieldset {
+        gap: 3px;
+    }
+
+    .modal__submit-btn {
+        padding: 5.6px 11.2px;
+    }
+}

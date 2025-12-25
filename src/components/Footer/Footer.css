@@ -10,3 +10,25 @@
     margin: 0;
     padding: 0;
 }
+
+/* Mobile View */
+@media screen and (max-width: 767px) {
+    .footer {
+        padding: 15px 25px;
+    }
+
+    .footer p {
+        font-size: 0.7rem;
+    }
+}
+
+/* Desktop View */
+@media screen and (min-width: 767px) and (max-width: 1020px) {
+    .footer {
+        padding: 20px 35px;
+    }
+
+    .footer p {
+        font-size: 0.9rem;
+    }
+}

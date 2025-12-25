@@ -22,3 +22,12 @@
     border: none;
     font-weight: 700;
 }
+
+/* Mobile View */
+@media screen and (max-width: 767px) {
+    .modal__confirm-text, 
+     .modal__submit-btn-delete, 
+     .modal__cancel-btn {
+        font-size: 0.875rem;
+    }
+}

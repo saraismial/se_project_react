@@ -1,18 +1,19 @@
 .header {
     display: flex;
+    justify-content: space-between;
     max-height: 40px;
     padding: 30px 50px;
     font-weight: 700;
 }
 
 .header__left {
-    margin-right: auto;
     display: flex;
+    justify-content: space-between;
 }
 
 .header__right {
-    margin-left: auto;
     display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -25,8 +26,7 @@
     height: 24px;
     font-size: 1.25rem;
     line-height: 24px;
-    margin-top: 11px;
-    margin-left: 40px;
+    margin: auto 10px;
 }
 
 .header__add_btn {
@@ -69,4 +69,89 @@
 
 .header__auth-btn:hover {
     opacity: 0.7;
+}
+
+
+/* Mobile View */
+@media screen and (max-width: 767px) {
+    .header {
+       flex-wrap: wrap;
+       max-height: fit-content;
+       justify-content: space-between;
+       padding: 15px 25px;
+    }
+
+    .header__right {
+        flex-direction: column-reverse;
+        max-width: 35%;
+        padding: 0;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    .header__logo {
+        width: 71.2px;
+        height: 32px;
+        padding: 4px;
+    }
+
+    .header__dateplace {
+        font-size: .875rem;
+        margin: 2px;
+    }
+
+    .header__left {
+        flex-direction: column;
+        max-width: 65%;
+    }
+
+    .header__add_btn {
+        font-size: 0.875rem;
+        padding: 2px;
+    }
+
+    .header__username {
+        font-size: .875rem;
+        margin: 0;
+        padding: 5px;
+    }
+
+    .header__avatar {
+        width: 30px;
+        height: 30px;
+    }
+
+
+    .header__auth-btn {
+        font-size: 0.875rem;
+        padding: 2px;
+    }
+}
+
+/* Tablet View */
+@media screen and (min-width: 768px) and (max-width: 1020px) {
+    .header {
+       padding: 20px 35px;
+    }
+
+    .header__logo {
+        width: 80.1px;
+        height: 36px;
+    }
+
+    .header__dateplace {
+        font-size: 1.125rem;
+    }
+
+    .header__add_btn {
+        font-size: 1.125rem;
+    }
+
+    .header__username {
+        font-size: 1.125rem;
+    }
+
+    .header__auth-btn {
+        font-size: 1.125rem;
+    }
 }

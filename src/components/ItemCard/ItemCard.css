@@ -43,3 +43,38 @@
     bottom: 15px;
     cursor: pointer;
 }
+
+/* Mobile View */ 
+@media screen and (max-width: 767px) {
+    .itemcard__tag{
+        padding: 1.4px 8.4px;
+        font-size: 0.7rem;
+        top: 10px;
+    }
+
+    .itemcard__like-icon {
+        width: 14px;
+        height: 11.9px;
+    }
+
+    .itemcard__like-btn {
+        bottom: 10.5px;
+    }
+}
+
+/* Desktop View */ 
+@media screen and (min-width: 768px) and (max-width: 1020px) {
+    .itemcard__tag{
+        font-size: 0.9rem;
+        top: 13px;
+    }
+
+    .itemcard__like-icon {
+        width: 18px;
+        height: 15.3px;
+    }
+
+    .itemcard__like-btn {
+        bottom: 13.5px;
+    }
+}

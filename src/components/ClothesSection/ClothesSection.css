@@ -27,3 +27,50 @@
     padding: 0;
     margin: 0;
 }
+
+
+/* Mobile View */
+@media screen and (max-width: 767px) {
+    .clothessection__row {
+        gap: 14px;
+        justify-content: space-between;
+    }
+
+    .clothessection__txt {
+        font-size: 0.875rem;
+        line-height: 1.1rem;
+    }
+
+    .clothessection__btn {
+        font-size: 0.875rem;
+        line-height: 1.1rem;
+    }
+
+    .clothessection__grid {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 14px;
+    }
+}
+
+/* Tablet View */
+@media screen and (min-width: 768px) and (max-width: 1020px) {
+    .clothessection__row {
+        gap: 18px;
+        justify-content: space-between;
+    }
+
+    .clothessection__txt {
+        font-size: 1.125rem;
+        line-height: 1.1rem;
+    }
+
+    .clothessection__btn {
+        font-size: 1.125rem;
+        line-height: 1.1rem;
+    }
+
+    .clothessection__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+}

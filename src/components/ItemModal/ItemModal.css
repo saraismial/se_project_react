@@ -71,3 +71,32 @@
     font-weight: 700;
     cursor: pointer;
 }
+
+
+/* Mobile View */
+@media screen and (max-width: 767px) {
+    .modal__image {
+        max-width: 348px;
+        max-height: 348px;
+    }
+
+    .modal__image-container p {
+        font-size: 0.875rem;
+        line-height: 1.1;
+        margin-left: 21px;
+    }
+
+    .modal__title {
+        margin: 14px 0 7px 0;
+    }
+
+    .modal__weather {
+        margin: 0 0 21px 0;
+    }
+
+    .modal__delete-btn {
+        margin: 14px;
+        font-size: 0.875rem;
+        line-height: 1.1;
+    }
+}

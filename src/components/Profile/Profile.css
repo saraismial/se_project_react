@@ -3,3 +3,20 @@
     padding: 30px 50px;
     gap: 116px;
 }
+
+
+/* Mobile View */
+@media screen and (max-width: 767px) {
+    .profile {
+       padding: 15px 25px;
+       gap: 20px;
+    }
+}
+
+/* Tablet View */
+@media screen and (min-width: 768px) and (max-width: 1020px) {
+    .profile {
+       padding: 20px 35px;
+       gap: 40px;
+    }
+}

@@ -35,11 +35,10 @@ function Header({
         <p className="header__dateplace">
           <time>{currentDate}</time>, {weatherData.city}
         </p>
+        <ToggleSwitch onChange={onChange} />
       </div>
 
       <div className="header__right">
-        <ToggleSwitch onChange={onChange} />
-
         {isLoggedIn ? (
           <>
             {/* LOGGED-IN VIEW */}

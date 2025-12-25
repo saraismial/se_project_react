@@ -5,7 +5,7 @@
     height: 28px;
     border: 2px solid #7E7E7E;
     border-radius: 20px;
-    margin-right: 20px;
+    margin: auto;
     padding: 0 8px;
     display: flex;
     align-items: center;
@@ -61,5 +61,37 @@
 
 .toggleswitch__checkbox:checked:hover ~ .toggleswitch__value_left {
     color: #000;
+}
+
+
+/* Mobile View */
+@media screen and (max-width: 767px) {
+    .toggleswitch {
+        width: 39.2px;
+        height: 19px;
+        margin: 2px 0 0 0;
+        border-width: 1.4px;
+        border-radius: 14px;
+        padding: 0 5.6px;
+    }
+
+    .toggleswitch:hover {
+        border-width: 1.4px;
+    }
+
+
+    .toggleswitch__circle {
+        width: 20px;
+        height: 20px;
+        left: -1px;
+    }
+
+    .toggleswitch__value {
+        font-size: 0.6125rem;
+    }
+
+    .toggleswitch__checkbox:checked + .toggleswitch__circle {
+        right: -1px;
+    }
 }
 
