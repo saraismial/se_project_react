@@ -83,9 +83,9 @@
 
     .header__right {
         flex-direction: column-reverse;
+        justify-content: flex-end;
         max-width: 35%;
         padding: 0;
-        justify-content: space-between;
         align-items: flex-end;
     }
 
@@ -125,6 +125,7 @@
     .header__auth-btn {
         font-size: 0.875rem;
         padding: 2px;
+        margin-top: 10px;
     }
 }
 
